@@ -1,6 +1,7 @@
 @extends('adminlte::page')
-@section('title', 'Add Car')
+@section('title', 'Book')
 @section('content')
+@include('../_messages')
 <div class="row">
 @foreach($data as $data)
   <div class="col-sm-4">

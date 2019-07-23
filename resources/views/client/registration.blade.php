@@ -8,6 +8,7 @@
 @section('body_class', 'register-page')
 
 @section('body')
+@include('../_messages')
     <div class="register-box">
         <div class="register-logo">
             <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</a>
@@ -38,7 +39,7 @@
                 </div>
                 <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
                     <input type="text" name="phone_number" class="form-control" value="{{ old('phone_number') }}"
-                           placeholder="{{ trans('adminlte::adminlte.phone_number') }}" required>
+                           placeholder="{{ trans('adminlte::adminlte.phone_number') }}" required pattern="[0]{1}[7]{1}[0-9]{8}">
                     <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
                     @if ($errors->has('email'))
                         <span class="help-block">

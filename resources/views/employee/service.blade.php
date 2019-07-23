@@ -1,7 +1,8 @@
 @extends('adminlte::page')
-@section('title', 'Add Car')
+@section('title', 'Update Service')
 @section('content')
-<div class="box box-info">
+@include('../_messages')
+<div class="box box-success">
 	<div class="box-header with-border">
 		<h3 class="box-title">Service Details</h3>
 		<div class="box-tools pull-right">
@@ -59,7 +60,7 @@
 	</div>
 	<!-- /.box-body -->
 	<div class="box-footer">
-		<button type="submit" class="btn btn-info pull-right">Submit</button>
+		<button type="submit" class="btn btn-success pull-right">Submit</button>
 	</div>
 	<!-- /.box-footer -->
 </form>

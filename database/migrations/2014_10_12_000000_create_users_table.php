@@ -17,6 +17,9 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->integer('employee_id')->nullable()->index();
             $table->integer('licence_number')->nullable()->unique();
+            $table->integer('national_id')->nullable()->unique();
+            $table->foreign('national_id')->references('national_id')->on('ntsa_records')
+                  ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('licence_number')->references('licence_number')->on('ntsa_records')  ->onUpdate('cascade')->onDelete('cascade');
             $table->string('first_name');
             $table->string('surname');

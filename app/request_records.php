@@ -13,6 +13,8 @@ class request_records extends Model
             'lease_start',
             'lease_end',
             'cost',
+            'status',
+            'penalty',
             'approved_by'
     ];
 }

@@ -15,8 +15,9 @@ class manageUsersController extends Controller
 {
     public function index(){
     	$users['users'] = DB::table('users')->where('is_active',true)->where('id', '<>', Auth::id())->where('role', '<>', 'Client')->get();
-        $suspended['suspended'] = DB::table('users')->where('role', '<>', 'Client')->where('is_active',false)->where('deleted_at',NULL)->get();
-    	return view('admin.manageUsers',$users, $suspended);
+        $suspended['suspended'] = DB::table('users')->where('is_active',false)->where('deleted_at',NULL)->get();
+        $client = DB::table('users')->where('role', 'Client')->where('is_active',true)->where('deleted_at',NULL)->get();
+    	return view('admin.manageUsers',$users,$suspended)->with('client',$client);
     }
 
     public function createUser(Request $request){
@@ -27,6 +28,7 @@ class manageUsersController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'phone_number' => 'required|string|max:10|min:10|unique:users',
 		]);   	
+        try{
         $user = user::create([
             'employee_id'=>$request->get('employee_id'),
             'first_name'=>ucwords($request->get('first_name')),
@@ -36,10 +38,13 @@ class manageUsersController extends Controller
             'role'=>'Employee',
             'password' => Hash::make('CarGeneral.2019'),
         ]);  
-        Session::flash('add_user_success', ucwords($request->get('surname'))." has been added successfully! ");
-        return app('App\Http\Controllers\Admin\manageUsersController')->index(); 
+          Session::flash('add_user_success', ucwords($request->get('surname'))." has been added successfully! ");
+        return app('App\Http\Controllers\Admin\manageUsersController')->index();
+    }catch(QueryException $e){
+       Session::flash('add_user_failed', "Cannot add ".ucwords($request->get('surname'))."!");
+       return redirect()->back();
     }
-
+}
     public function suspendUser($email){
     	$user=DB::table('users')->where('email',$email)->update(['is_active' => false]);
     	Session::flash('suspend_user_success', " User suspended! ");
@@ -50,10 +55,6 @@ class manageUsersController extends Controller
 		$user=DB::table('users')->where('email',$email)->update(['is_active' => true]);
 		Session::flash('activate_user_success', "User activation successful! ");
         return app('App\Http\Controllers\Admin\manageUsersController')->index(); 
-    }
-
-    public function changeRole($email){
-    	
     }
 
     public function deleteUser($email){

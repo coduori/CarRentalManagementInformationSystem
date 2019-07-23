@@ -1,8 +1,7 @@
 @extends('adminlte::page')
 @section('title', 'Manage Users')
 @section('content')
-
-     @include('../_messages')
+@include('../_messages')
      <div class="box box-info">
       <div class="box-header with-border">
         <h3 class="box-title">Create User</h3>
@@ -77,7 +76,7 @@
             <th scope="col">Surname</th>
             <th scope="col">Email</th>
             <th scope="col">Role</th>
-            <th scope="col" colspan="2" class="text-center">Action</th>
+            <th scope="col" colspan="2">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -90,8 +89,51 @@
                 <td>{{$user->surname}}</td>
                 <td>{{$user->email}}</td>
                 <td>{{$user->role}}</td>
-                <td><a href="{{url('change/'.$user->email.'')}}" class="btn btn-success">Change Role</a></td>
                 <td><a href="{{url('suspend/'.$user->email.'')}}" class= "btn btn-warning">Suspend</td>
+                </tr>
+                @php $rank++; @endphp
+                @endforeach  
+        </tbody>
+      </table>
+    </div><!-- /.box-body -->
+  </div><!-- /.box -->
+
+    <div class="box box-success collapsed-box">
+      <div class="box-header with-border">
+        <h3 class="box-title">Active Clients</h3>
+        <div class="box-tools pull-right">
+          <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+          <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+        </div><!-- /.box-tools -->
+      </div><!-- /.box-header -->
+      <div class="box-body">
+       <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th class="text-center" scope="col">No.</th>
+            <th class="text-center" scope="col">Licence Number</th>
+            <th class="text-center" scope="col">First Name</th>
+            <th class="text-center" scope="col">Surname</th>
+            <th class="text-center" scope="col">Email</th>
+            <th class="text-center" scope="col">Phone Number</th>
+            <th class="text-center" scope="col">National ID</th>
+            <th class="text-center" scope="col">Licence Expiery</th>
+            <th class="text-center" scope="col" colspan="2">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @php $rank = 1; @endphp
+              @foreach ($client as $user)
+              <tr>
+                <td class="text-center">{{$rank}}</td>
+                <td class="text-center">{{$user->licence_number}}</td>
+                <td class="text-center">{{$user->first_name}}</td>
+                <td class="text-center">{{$user->surname}}</td>
+                <td class="text-center">{{$user->email}}</td>
+                <td class="text-center">{{$user->phone_number}}</td>
+                <td class="text-center">{{$user->national_id}}</td>
+                <td class="text-center">{{$user->licence_expiery}}</td>
+                <td class="text-center"><a href="{{url('suspend/'.$user->email.'')}}" class= "btn btn-warning">Suspend</td>
                 </tr>
                 @php $rank++; @endphp
                 @endforeach  
@@ -113,12 +155,11 @@
         <thead class="thead-light">
           <tr>
             <th scope="col">No.</th>
-            <th scope="col">Employee ID</th>
             <th scope="col">First Name</th>
             <th scope="col">Surname</th>
             <th scope="col">Email</th>
             <th scope="col">Role</th>
-            <th scope="col" colspan="2" class="text-center">Action</th>
+            <th scope="col" colspan="2">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -126,7 +167,6 @@
               @foreach ($suspended as $suspended)
               <tr>
                 <td>{{$rank}}</td>
-                <td>{{$suspended->employee_id}}</td>
                 <td>{{$suspended->first_name}}</td>
                 <td>{{$suspended->surname}}</td>
                 <td>{{$suspended->email}}</td>

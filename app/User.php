@@ -27,6 +27,7 @@ class User extends Authenticatable
         'licence_number',
         'licence_expiery',
         'password',
+        'national_id',
     ];
 
     /**

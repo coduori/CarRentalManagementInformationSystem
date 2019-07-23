@@ -19,6 +19,7 @@ class CreateNtsaRecordsTable extends Migration
             $table->string('first_name');
             $table->string('surname')->index();
             $table->date('expiery');
+            $table->integer('national_id')->index();
             $table->timestampsTz();
             $table->softDeletes();
         });

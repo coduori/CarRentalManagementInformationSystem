@@ -1,7 +1,7 @@
 @extends('adminlte::page')
-
 @section('title', 'Add Car')
 @section('content')
+@include('../_messages')
 <div class="box box-info">
 	<div class="box-header with-border">
 		<h3 class="box-title">Add Car</h3>

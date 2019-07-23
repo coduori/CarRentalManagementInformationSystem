@@ -1,8 +1,8 @@
 @extends('adminlte::page')
-
-@section('title', 'Add Car')
+@section('title', 'update insurance')
 @section('content')
-<div class="box box-info">
+@include('../_messages')
+<div class="box box-success">
 	<div class="box-header with-border">
 		<h3 class="box-title">Insurance Details</h3>
 		<div class="box-tools pull-right">
@@ -72,54 +72,10 @@
 				</textarea> 
 			</div>
 		</div>
-		<div class="form-group">
-			<label for="inputEmail3" class="col-sm-2 control-label">Licence Plate</label>
-
-			<div class="col-sm-10">
-				<input type="text" class="form-control" id="inputEmail3" name="plate"  value="{{$plate}}" disabled>
-			</div>
-		</div>		
-		<div class="form-group">
-			<label for="inputPassword3" class="col-sm-2 control-label">Current Mileage</label>
-
-			<div class="col-sm-10">
-				<input type="number" class="form-control" id="inputPassword3" name="mileage" placeholder="232000"required>
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="inputPassword3" class="col-sm-2 control-label">Service Date</label>
-
-			<div class="col-sm-10">
-				<input type="date" class="form-control" id="inputPassword3" name="service_date" required>
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="inputPassword3" class="col-sm-2 control-label">Next Service Mileage</label>
-
-			<div class="col-sm-10">
-				<input type="number" class="form-control" id="inputPassword3" name="next_service" required>
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="inputPassword3" class="col-sm-2 control-label">Cost</label>
-
-			<div class="col-sm-10">
-				<input type="number" class="form-control" id="inputPassword3" name="cost" required>
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="inputPassword3" class="col-sm-2 control-label">Comments</label>
-
-			<div class="col-sm-10">
-				<textarea type="text" class="form-control" id="inputPassword3" name="comments" required>
-					
-				</textarea> 
-			</div>
-		</div>
 	</div>
 	<!-- /.box-body -->
 	<div class="box-footer">
-		<button type="submit" class="btn btn-info pull-right">Submit</button>
+		<button type="submit" class="btn btn-success pull-right">Submit</button>
 	</div>
 	<!-- /.box-footer -->
 </form>

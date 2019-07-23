@@ -1,20 +1,20 @@
 @extends('adminlte::page')
 @section('title', 'Add Car')
 @section('content')
-@include('_messages')
+@include('../_messages')
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="box box-success collapsed-box">
         <div class="box-header with-border">
-          <h3 class="box-title">Vehicle List</h3>
+          <h3 class="box-title">Vehicle Details</h3>
           <div class="box-tools pull-right">
             <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
             <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
           </div>
         </div>
         <div class="box-body ">
-          <div class="col-md-5">
+          <div class="col-md-7">
             <div class="box box-widget widget-user-2">
               <div class="widget-user-header bg-yellow">
                 <div class="widget-user-image">
@@ -106,7 +106,11 @@
               <td>{{$det->cost}}</td>
               <td>{{$det->renewal_date}}</td>
               <td>{{$det->expiery_date}}</td>
-              <td><a href="{{url('delete/'.$det->licence_plate.'/insurance')}}" class= "btn btn-danger">Delete</a></td>
+              @if (count($insurance)!=1)
+                {{-- expr --}}
+             
+              <td><a href="{{url('delete/'.$det->licence_plate.'/insurance/'.$det->id)}}" class= "btn btn-danger">Delete</a></td>
+               @endif
             </tr>
             @php $rank++; @endphp
             @endforeach  
@@ -154,7 +158,9 @@
               <td>{{$det->current_mileage}}</td>
               <td>{{$det->next_service_mileage}}</td>
               <td>{{$det->cost}}</td>
-              <td><a href="{{url('delete/'.$det->licence_plate.'/service')}}" class= "btn btn-danger">Delete</a></td>
+              @if (count($service)!=1)
+              <td><a href="{{url('delete/'.$det->licence_plate.'/service/'.$det->id)}}" class= "btn btn-danger">Delete</a></td>
+                @endif
             </tr>
             @php $rank++; @endphp
             @endforeach  

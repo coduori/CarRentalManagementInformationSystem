@@ -1,7 +1,7 @@
 @extends('adminlte::page')
-@section('title', 'Add Car')
+@section('title', 'Vehicle summary')
 @section('content')
-@include('_messages')
+@include('../_messages')
 <div class="box box-success">
 	<div class="box-header with-border">
 		<h3 class="box-title">Vehicle List</h3>
