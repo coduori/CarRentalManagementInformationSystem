@@ -16,11 +16,14 @@ class sendMail extends Mailable
      *
      * @return void
      */
-    public function __construct($to,$mess,$sub)
+    public $subject;
+    public $message;
+
+    public function __construct($request)
     {
-        $this->to=$to;
-        $this->mess=$mess;
-        $this->sub=$sub;
+        $this->subject=$request->subject;
+        $this->message=$request->message;
+        
     }
     /**
      * Build the message.
@@ -29,8 +32,7 @@ class sendMail extends Mailable
      */
     public function build()
     {
-
-        return $this->from('iconcept24@gmail.com')->subject($sub)
-                    ->view('emails.ordinaryMail')->with('details',$this->details);
+        return $this->from(env("MAIL_USERNAME"))->subject($this->subject)
+                    ->view('emails.ordinaryMail')->with('details',$this->message);
     }
 }

@@ -13,10 +13,8 @@ use Session;
 class requestsController extends Controller
 {
     public function index(){
-    	$dat=DB::table('vehicle_description')->where(['status'=>'Available'])->get();
-        $data= DB::select(DB::raw('select vehicle_description.id,vehicle_description.licence_plate,transmission,image,lease_price,next_service_mileage-current_mileage as milDif FROM vehicle_description LEFT JOIN service_records ON `vehicle_description`.`licence_plate` = `service_records`.`licence_plate` where status="Available" 
-'));
-    	return view('client.listVehicles')->with('data',$data)->withErrors('errors',$errors);
+    	$data=DB::table('vehicle_description')->where(['status'=>'Available'])->get();
+            	return view('client.listVehicles')->with('data',$data);
     }
     public function book($book){
     	$request=DB::table('vehicle_description')->where('id',$book)->get();

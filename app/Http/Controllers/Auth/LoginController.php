@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -47,5 +48,17 @@ class LoginController extends Controller
     public function registerClient(){
 
         return view('client.registration');
+    }
+    public function Authenticated(Request $request, $user){
+
+        if (auth::user()->role=='Admin') {
+            return app('App\Http\Controllers\Admin\manageUsersController')->index();
+        }elseif (auth::user()->role=='Employee') {
+            return app('App\Http\Controllers\staff\functionsController')->index();
+        }elseif (auth::user()->role='Client') {
+            return app('App\Http\Controllers\Client\requestsController')->index();
+        }else{
+            return app('App\Http\Controllers\Auth\LoginController')->showLoginForm();
+        }
     }
 }

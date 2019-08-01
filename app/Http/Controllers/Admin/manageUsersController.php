@@ -13,6 +13,7 @@ use DB;
 
 class manageUsersController extends Controller
 {
+    
     public function index(){
     	$users['users'] = DB::table('users')->where('is_active',true)->where('id', '<>', Auth::id())->where('role', '<>', 'Client')->get();
         $suspended['suspended'] = DB::table('users')->where('is_active',false)->where('deleted_at',NULL)->get();

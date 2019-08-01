@@ -14,10 +14,7 @@
                         <th>Number Plate</th>               
                         <th>Model</th>                 
                         <th>Status</th>
-                        <th>Ins. type</th>
-                        <th>Ins. Expiery</th>
-                        <th>Lease Price</th>
-                        <th>Mileage</th>
+                        
                         <th>Action</th>
                     </tr>       
                 </thead>
@@ -26,7 +23,6 @@
                 $rank = 1; 
                 
                    foreach($data as $value ){
-                   $result = $value->next_service_mileage-$value->current_mileage;
                     echo '
 	                   <tr>
 	                        <td>'.$rank.'</td>                     
@@ -51,12 +47,7 @@
 	                    ';
 	                }
 
-	                        echo '                     
-	                                            
-	                        <td>'.$value->type.'</td>                     
-	                        <td>'.$value->expiery_date.'</td>                     
-	                        <td>'.$value->lease_price.'</td>                     
-	                        <td>'.$result.'</td>
+	                        echo ' 
 	                        <td><a href="details/'.$value->licence_plate.'" class="btn btn-success">Details</a></td>';                     
 	                            $rank++;
 	                echo '</tr> ';

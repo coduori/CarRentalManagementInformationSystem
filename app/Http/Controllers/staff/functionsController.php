@@ -8,25 +8,11 @@ use DB;
 use App\insure;
 use App\service_records;
 use App\vehicleDescription;
+use App\request_records;
 class functionsController extends Controller
 {
     public function index(){
-        DB::enableQueryLog();
-    	$data= vehicleDescription::distinct()
-    	->leftjoin('insurance_records','vehicle_description.licence_plate','=','insurance_records.licence_plate')
-        ->orderBy('insurance_records.licence_plate', 'desc',1)
-    	->leftjoin('service_records','vehicle_description.licence_plate','=','service_records.licence_plate')
-        ->orderBy('service_records.licence_plate', 'desc',1)
-    	->select('vehicle_description.licence_plate',
-    			 'model',
-    			 'lease_price',
-    			 'status',
-    			 'type',
-    			 'expiery_date',
-    			 'current_mileage',
-    			 'next_service_mileage'
-    			)->get('vehicle_description.licence_plate');
-        dd(DB::getQueryLog());
+    	$data= DB::table('vehicle_description')->get();
  	return view ('staff.vehicleList')->with('data',$data);
     }
     public function details($plate){
@@ -58,4 +44,11 @@ class functionsController extends Controller
         service_records::where(['licence_plate'=>$plate,'id'=>$id])->delete();
         return app('App\Http\Controllers\staff\functionsController')->details($plate); 
     }
+    public function reports(){
+        $requests=request_records::all();
+        $insurance=insure::all();
+        $service=service_records::all();
+        return view('staff.reports')->with(['requests'=>$requests,'insurance'=>$insurance,'service'=>$service]);
+    }
+    
 }

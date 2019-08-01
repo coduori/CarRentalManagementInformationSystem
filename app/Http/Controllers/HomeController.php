@@ -61,11 +61,7 @@ class HomeController extends Controller
         return view ('mail');
     }
     public function sendMail(Request $request){
-        $to[]=$request->to;
-        $mess[]=$request->message;
-        $sub[]=$request->subject;
-        // $details[] = array('to'=>$request->to,'from'=>Auth::user()->email,'message'=>$request->message);
-        Mail::to($to)->send(new sendMail($to,$mess,$sub));
+        Mail::to($request->to)->send(new sendMail($request));
         Session::flash('mail_sent','Mail Sent successfully');
         return redirect()->back();
     }

@@ -7,6 +7,7 @@ Route::post('/update/{plate}/insurance', 'functionsController@updateInsurance');
 Route::post('/update/{plate}/service', 'functionsController@updateService');
 Route::get('/delete/{plate}/insurance/{id}', 'functionsController@deleteInsurance');
 Route::get('/delete/{plate}/service/{id}', 'functionsController@deleteService');
+Route::get('/reports', 'functionsController@reports');
 Route::get('/update/{plate}/insurance', function($plate){
 
 	return view('employee.insurance')->with('plate',$plate);
